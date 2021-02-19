@@ -36,7 +36,7 @@ public class AccountController {
     }
 
     @GetMapping("/{id}/statementview")
-    public ModelAndView getStatementView(@PathVariable Long id, Model model, HttpServletRequest request) throws Exception {
+    public ModelAndView getStatement(@PathVariable Long id, Model model, HttpServletRequest request) throws Exception {
         StatementRepresentation statementRepresentation = accountService.fillStatement(id);
         model.addAttribute("statement", statementRepresentation);
         ModelAndView statementPage = new ModelAndView("statement");
@@ -44,3 +44,4 @@ public class AccountController {
     }
 
 }
+
