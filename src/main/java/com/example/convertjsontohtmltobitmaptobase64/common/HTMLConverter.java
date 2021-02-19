@@ -9,7 +9,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Base64;
 import java.util.Locale;
 
 @Service
@@ -17,6 +22,13 @@ public class HTMLConverter {
 
     @Autowired
     private ViewResolver viewResolver;
+
+    public String getBufferedImageFromStatement(StatementRepresentation statementRepresentation, Model model, HttpServletRequest request) throws Exception {
+        String pageHtml = getStatementString(statementRepresentation, model, request);
+        byte[] imageInByte = pageHtml.getBytes();
+        String imageString = Base64.getEncoder().encodeToString(imageInByte);
+        return imageString;
+    }
 
     public ModelAndView getStatementView(StatementRepresentation statementRepresentation, Model model, HttpServletRequest request) {
         model.addAttribute("statement", statementRepresentation);

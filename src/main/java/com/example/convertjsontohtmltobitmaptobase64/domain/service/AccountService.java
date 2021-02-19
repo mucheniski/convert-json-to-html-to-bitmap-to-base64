@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.util.UUID;
@@ -60,6 +61,11 @@ public class AccountService {
     public String getStatementString(Long id, Model model, HttpServletRequest request) throws Exception {
         StatementRepresentation statementRepresentation = fillStatement(id);
         return htmlConverter.getStatementString(statementRepresentation, model, request);
+    }
+
+    public String encodeHtmlToBase64(Long id, Model model, HttpServletRequest request) throws Exception {
+        StatementRepresentation statementRepresentation = fillStatement(id);
+        return htmlConverter.getBufferedImageFromStatement(statementRepresentation, model, request);
     }
 
     private StatementRepresentation fillStatement(Long id) {
