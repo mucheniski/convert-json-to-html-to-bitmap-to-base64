@@ -3,6 +3,7 @@ package com.example.convertjsontohtmltobitmaptobase64.domain.service;
 import com.example.convertjsontohtmltobitmaptobase64.application.presentation.representation.StatementRepresentation;
 import com.example.convertjsontohtmltobitmaptobase64.application.presentation.representation.StatementRepresentationWithFile;
 import com.example.convertjsontohtmltobitmaptobase64.common.Base64Converter;
+import com.example.convertjsontohtmltobitmaptobase64.common.HTMLConverter;
 import com.example.convertjsontohtmltobitmaptobase64.domain.domain.Account;
 import com.example.convertjsontohtmltobitmaptobase64.domain.enums.FileType;
 import com.example.convertjsontohtmltobitmaptobase64.domain.exception.EntityNotFoundException;
@@ -27,6 +28,9 @@ public class AccountService {
     @Autowired
     private Base64Converter base64Converter;
 
+    @Autowired
+    private HTMLConverter htmlConverter;
+
     @Value("${default.imagePath}")
     private String defatulImagePath;
 
@@ -48,7 +52,17 @@ public class AccountService {
         base64Converter.decodeBase64ToImageAndSaveFile(imgPath, savePath);
     }
 
-    public StatementRepresentation fillStatement(Long id) {
+    public ModelAndView getStatementView(Long id, Model model, HttpServletRequest request) {
+        StatementRepresentation statementRepresentation = fillStatement(id);
+        return htmlConverter.getStatementView(statementRepresentation, model, request);
+    }
+
+    public String getStatementString(Long id, Model model, HttpServletRequest request) throws Exception {
+        StatementRepresentation statementRepresentation = fillStatement(id);
+        return htmlConverter.getStatementString(statementRepresentation, model, request);
+    }
+
+    private StatementRepresentation fillStatement(Long id) {
         Account account = findById(id);
         StatementRepresentation statementRepresentation = new StatementRepresentation();
         statementRepresentation.setName(account.getName());
@@ -64,5 +78,4 @@ public class AccountService {
     private String getFullPath(String fileName) {
         return FileSystems.getDefault().getPath(defatulImagePath, fileName).toString();
     }
-
 }

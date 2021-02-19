@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "245dee98-cb85-4b9d-80a9-b9b871f7de94",
+		"name": "bvtests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "findById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/accounts/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "encode-image-to-base64",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "templateFile",
+							"type": "file",
+							"src": "/C:/ws-developer/convert-json-to-bitmap-spring/img/img.bmp"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/accounts/encode-image-to-base64",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts",
+						"encode-image-to-base64"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "decode-base64-to-image",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "templateFile",
+							"type": "file",
+							"src": "/C:/ws-developer/convert-json-to-bitmap-spring/img/client2Encodebase64.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/accounts/decode-base64-to-image",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts",
+						"decode-base64-to-image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get html statement view",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/accounts/1/statement-view",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts",
+						"1",
+						"statement-view"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get html statement string",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/accounts/1/statement-string",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts",
+						"1",
+						"statement-string"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

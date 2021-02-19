@@ -35,12 +35,14 @@ public class AccountController {
         accountService.decodeBase64ToImageAndSaveFile(statementRepresentation);
     }
 
-    @GetMapping("/{id}/statementview")
-    public ModelAndView getStatement(@PathVariable Long id, Model model, HttpServletRequest request) throws Exception {
-        StatementRepresentation statementRepresentation = accountService.fillStatement(id);
-        model.addAttribute("statement", statementRepresentation);
-        ModelAndView statementPage = new ModelAndView("statement");
-        return statementPage;
+    @GetMapping("/{id}/statement-view")
+    public ModelAndView getStatementView(@PathVariable Long id, Model model, HttpServletRequest request) throws Exception {
+        return accountService.getStatementView(id, model, request);
+    }
+
+    @GetMapping("/{id}/statement-string")
+    public String getStatementString(@PathVariable Long id, Model model, HttpServletRequest request) throws Exception {
+        return accountService.getStatementString(id, model, request);
     }
 
 }
