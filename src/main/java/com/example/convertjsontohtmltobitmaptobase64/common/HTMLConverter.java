@@ -21,14 +21,6 @@ public class HTMLConverter {
     @Autowired
     private ViewResolver viewResolver;
 
-    public BufferedImage getBufferedImageFromStatement(StatementRepresentation statementRepresentation, Model model, HttpServletRequest request) throws Exception {
-        MockHttpServletResponse mockHttpServletResponse = getFillPage(statementRepresentation, model, request);
-        byte[] imageInByte = mockHttpServletResponse.getContentAsByteArray();
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageInByte);
-        BufferedImage bufferedImage = ImageIO.read(inputStream);
-        return bufferedImage;
-    }
-
     public ModelAndView getStatementView(StatementRepresentation statementRepresentation, Model model, HttpServletRequest request) {
         model.addAttribute("statement", statementRepresentation);
         return new ModelAndView("statement");
