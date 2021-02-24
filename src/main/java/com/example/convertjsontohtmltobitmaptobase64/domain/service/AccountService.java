@@ -58,14 +58,10 @@ public class AccountService {
         return htmlConverter.getStatementView(statementRepresentation, model, request);
     }
 
-    public String getStatementString(Long id, Model model, HttpServletRequest request) throws Exception {
+    public String encodeStatementToBase64(Long id, Model model, HttpServletRequest request) throws Exception {
         StatementRepresentation statementRepresentation = fillStatement(id);
-        return htmlConverter.getStatementString(statementRepresentation, model, request);
-    }
-
-    public String encodeHtmlToBase64(Long id, Model model, HttpServletRequest request) throws Exception {
-        StatementRepresentation statementRepresentation = fillStatement(id);
-        return htmlConverter.getBufferedImageFromStatement(statementRepresentation, model, request);
+        BufferedImage bufferedImage = htmlConverter.getBufferedImageFromStatement(statementRepresentation, model, request);
+        return base64Converter.encodeImageToBase64(bufferedImage);
     }
 
     private StatementRepresentation fillStatement(Long id) {

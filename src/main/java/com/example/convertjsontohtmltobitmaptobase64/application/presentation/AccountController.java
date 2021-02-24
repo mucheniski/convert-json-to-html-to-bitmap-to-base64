@@ -1,6 +1,5 @@
 package com.example.convertjsontohtmltobitmaptobase64.application.presentation;
 
-import com.example.convertjsontohtmltobitmaptobase64.application.presentation.representation.StatementRepresentation;
 import com.example.convertjsontohtmltobitmaptobase64.application.presentation.representation.StatementRepresentationWithFile;
 import com.example.convertjsontohtmltobitmaptobase64.domain.domain.Account;
 import com.example.convertjsontohtmltobitmaptobase64.domain.service.AccountService;
@@ -40,14 +39,9 @@ public class AccountController {
         return accountService.getStatementView(id, model, request);
     }
 
-    @GetMapping("/{id}/statement-string")
-    public String getStatementString(@PathVariable Long id, Model model, HttpServletRequest request) throws Exception {
-        return accountService.getStatementString(id, model, request);
-    }
-
     @GetMapping("/{id}/statement-encode-to-base64")
-    public String encodeHTMLToBase64(@PathVariable Long id, Model model, HttpServletRequest request) throws Exception {
-        return accountService.encodeHtmlToBase64(id, model, request);
+    public String encodeStatementToBase64(@PathVariable Long id, Model model, HttpServletRequest request) throws Exception {
+        return accountService.encodeStatementToBase64(id, model, request);
     }
 
 }

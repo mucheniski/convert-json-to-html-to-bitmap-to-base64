@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Base64;
 
+// https://grokonez.com/java/java-advanced/java-8-encode-decode-an-image-base64
+
 @Service
 public class Base64Converter {
 
@@ -54,9 +56,9 @@ public class Base64Converter {
 
     // convert BufferedImage to byte[]
     private byte[] toByteArray(BufferedImage bufferedImage, String format) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(bufferedImage, format, baos);
-        byte[] bytes = baos.toByteArray();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, format, byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
         return bytes;
     }
 
