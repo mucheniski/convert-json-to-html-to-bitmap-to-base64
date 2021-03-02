@@ -3,11 +3,47 @@
 <head>
     <meta charset="UTF-8"/>
     <title>POC Statement</title>
+    <style type="text/css">
+            #logo{
+                float: left;
+                padding-right: 10px;
+            }
+            #title {
+                font-size:large;
+                font-weight:bold;
+            }
+            .label{
+                font-size: small;
+                padding-top: 15px;
+                padding-bottom: 0px;
+            }
+            .text{
+                font-weight:bold;
+                padding-top: 0px;
+            }
+        </style>
 </head>
-    <body>
-        <div>
-            <p th:text="${statement?.name}">name</p>
-            <p th:text="${#numbers.formatDecimal(statement?.balance, 0, 'POINT', 2, 'COMMA')}">balance</p>
-        </div>
-    </body>
+<body>
+<div>
+    <div id="logo"><img th:src="@{/images/logobvsmall.png}"></img></div>
+    <p id="title">Extrato Bancário</p>
+</div>
+<hr></hr>
+<div>
+    <div class="label">Nome:</div>
+    <div class="text" th:text="${statement?.name}">name</div>
+
+    <div class="label">Instituição Financeira:</div>
+    <div class="text" th:text="${statement?.bankname}">bankname</div>
+
+    <div class="label">Agência:</div>
+    <div class="text" th:text="${statement?.agency}">agency</div>
+
+    <div class="label">Conta:</div>
+    <div class="text" th:text="${statement?.number}">number</div>
+
+    <div class="label">Saldo:</div>
+    <div class="text" th:text="${#numbers.formatDecimal(statement?.balance, 0, 'POINT', 2, 'COMMA')}">balance</div>
+</div>
+</body>
 </html>

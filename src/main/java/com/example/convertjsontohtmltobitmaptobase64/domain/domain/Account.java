@@ -17,6 +17,9 @@ public class Account {
     private Long id;
 
     private String name;
+    private String bankname;
+    private String agency;
+    private String number;
     private BigDecimal balance;
 
 }

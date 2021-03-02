@@ -62,6 +62,9 @@ public class AccountService {
         Account account = findById(id);
         StatementRepresentation statementRepresentation = new StatementRepresentation();
         statementRepresentation.setName(account.getName());
+        statementRepresentation.setBankname(account.getBankname());
+        statementRepresentation.setAgency(account.getAgency());
+        statementRepresentation.setNumber(account.getNumber());
         statementRepresentation.setBalance(account.getBalance());
         return statementRepresentation;
     }
