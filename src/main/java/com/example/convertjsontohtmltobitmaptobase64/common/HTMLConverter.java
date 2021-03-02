@@ -13,6 +13,9 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Locale;
 
 @Service
@@ -26,6 +29,10 @@ public class HTMLConverter {
         return new ModelAndView("statement");
     }
 
+    public BufferedImage getStatementBufferedImage(StatementRepresentation statementRepresentation, Model model, HttpServletRequest request) throws IOException {
+        return null;
+    }
+
     private MockHttpServletResponse getFillPage(StatementRepresentation statementRepresentation, Model model, HttpServletRequest request) throws Exception {
         model.addAttribute("statement", statementRepresentation);
         ModelAndView statementPage = new ModelAndView("statement");
@@ -34,5 +41,6 @@ public class HTMLConverter {
         resolvedView.render(model.asMap(), request, mockHttpServletResponse);
         return mockHttpServletResponse;
     }
+
 
 }

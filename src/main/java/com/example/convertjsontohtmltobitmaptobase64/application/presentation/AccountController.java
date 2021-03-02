@@ -41,7 +41,7 @@ public class AccountController {
 
     @GetMapping("/{id}/statement-encode-to-base64")
     public String encodeStatementToBase64(@PathVariable Long id, Model model, HttpServletRequest request) throws Exception {
-        return null;
+        return accountService.encodeStatementToBase64(id, model, request);
     }
 
 }

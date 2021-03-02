@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.nio.file.FileSystems;
 import java.util.UUID;
 
@@ -58,6 +59,12 @@ public class AccountService {
         return htmlConverter.getStatementView(statementRepresentation, model, request);
     }
 
+    public String encodeStatementToBase64(Long id, Model model, HttpServletRequest request) {
+        StatementRepresentation statementRepresentation = fillStatement(id);
+        BufferedImage bufferedImage = htmlConverter.getStatementBufferedImage(statementRepresentation, model, request);
+        return null;
+    }
+
     private StatementRepresentation fillStatement(Long id) {
         Account account = findById(id);
         StatementRepresentation statementRepresentation = new StatementRepresentation();
@@ -77,4 +84,5 @@ public class AccountService {
     private String getFullPath(String fileName) {
         return FileSystems.getDefault().getPath(defatulImagePath, fileName).toString();
     }
+
 }
